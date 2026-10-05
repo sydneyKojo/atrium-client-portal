@@ -17,7 +17,8 @@ export async function GET(_req: Request, ctx: RouteContext<"/api/files/[id]">) {
     .where(eq(t.files.id, id));
   if (!row || !canAccessClient(user, row.clientId)) return new NextResponse("Not found", { status: 404 });
 
-  const body = await readUpload(row.file.id);
+  const body = await readUpload(row.file.id).catch(() => null);
+  if (!body) return new NextResponse("This file is no longer available. Ask the agency to upload it again.", { status: 404 });
   return new NextResponse(new Uint8Array(body), {
     headers: {
       // Always download, never render inline, so an uploaded HTML file can't run in the portal's origin.
