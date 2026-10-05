@@ -8,6 +8,8 @@ recently.
 
 **Built by [Sydney Torkornoo](https://baobabpeaks.com)**, full-stack developer · [GitHub](https://github.com/sydneyKojo)
 
+**Live demo: [atrium.baobabpeaks.com](https://atrium.baobabpeaks.com)**. Sign in with one click as the agency or as a client.
+
 ---
 
 ## The problem it solves
