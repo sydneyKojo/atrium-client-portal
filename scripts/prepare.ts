@@ -7,7 +7,9 @@ import { join } from "node:path";
 import postgres from "postgres";
 import { DDL } from "../src/db/schema";
 import { DEMO_FILES } from "./demo-files";
+import { ensureDatabase } from "./ensure-db";
 
+await ensureDatabase(process.env.DATABASE_URL ?? "postgres://localhost:5432/client_portal");
 const sql = postgres(process.env.DATABASE_URL ?? "postgres://localhost:5432/client_portal", { onnotice: () => {} });
 await sql.unsafe(DDL);
 const [row] = await sql<{ n: number }[]>`select count(*)::int as n from clients`;
